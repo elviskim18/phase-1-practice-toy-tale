@@ -34,12 +34,12 @@ function renderToy(toy){
   card.className = 'card';
   card.innerHTML =`
   <h2>${toy.name}</h2>
-  <img src="${toy.image}" class="toy-avatar">
+  <img src="${toy.image}" class="toy-avatar">  
   <p id="likesP">${toy.likes} likes</p>
   <button id="likeBtn">like</button>
-  `
+  `                                      //image not loading
   card.querySelector("#likeBtn").addEventListener('click', (event) =>{
-    event.preventDefault()   //not working quite as it should ,still the page refreshes after clicking
+    event.preventDefault()   //page refreshes after clicking
     toy.likes += 1;
     card.querySelector("#likesP").textContent = toy.likes +" " +"likes"
     updateLikes(toy)
@@ -74,6 +74,8 @@ function addToyData(newtoy){
 
 //patch
 function updateLikes(toy){
+  
+
   fetch(`http://localhost:3000/toys/${toy.id}`, {
     method:'PATCH',
     headers:{
